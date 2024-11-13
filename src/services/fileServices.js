@@ -20,3 +20,19 @@ export const createFile = async (data, pathData) => {
         throw new Error(`Error al crear o guardar el archivo : ${error}`)
     }
 }
+
+
+export const readFile = async (pathData) => { 
+    try {
+        const datafilePath = path.join(__dirname, ´../data/${ pathData }´);
+
+        const data = await fs.readFile(datafilePath, 'utf8');
+
+        return JSON.parse(data);
+
+    } catch (error) {
+        console.log(`no podemor leer el archivo : ${error}`);
+        return null;
+    }
+
+}

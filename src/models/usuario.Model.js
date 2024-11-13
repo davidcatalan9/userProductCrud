@@ -1,6 +1,7 @@
 import { v4 as uuid4 } from "uuid";
+import { createDataFile } from "../utils/fileUtils";
 
-expor class Usuario {
+export class Usuario {
   #id;
   #name;
   #lastname;
@@ -63,5 +64,19 @@ expor class Usuario {
       rol: this.#rol,
       active: this.#active,
     };
+  }
+
+  static async crear(data) {
+    try {
+      const { name, lastname, email, rol } = data;
+
+      const usuario = new Usuario(name, lastname, email, rol);
+
+      await createDataFile(usuario, "usuarios.json");
+
+      return usuario;
+    } catch (error) {
+      throw new Error(`fallo al crear usuario, error: ${error}`);
+    }
   }
 }
