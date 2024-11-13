@@ -1,7 +1,7 @@
 import { v4 as uuid4 } from 'uuid';
 
 
-class Product {
+export class Product {
     #id
     #name
     #description
@@ -57,5 +57,7 @@ class Product {
             active: this.#visible
         }
     }
+
+
 
 }
